@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)https://stacksnippets.net/js -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        
+    </style>
+    </head>
+<body onload="getItem()">
+    
+  <div class="wrapper">
+    <div class="container">
+      Press any key to get started!
+      <br>
+      <br>Wins: # of times user guessed the word correctly
+      <br>
+      <br>Display random word from Array: <strong><u><span id="wordGuess">kaitlyn</span></u></strong>
+      <br>
+      <br>as the user guesses the correct letter, make the word display like this: <span id="blankSpaces">_ _ _ _ _</span>
+      <br>
+      <br>Number of Guesses Remaining: <span id="guessesLeft">2</span>
+      <br>
+      <br>Letters Already Guessed: <span id="lettersGuessed">hhbhffff</span>
+      <br>
+      <br>
+    </div>
+  </div>
+
+    <script type="text/javascript">
+        //Computer picks random word to guess
+function getItem() {
+  //Possible words to guess
+  var words = ['jason', 'kaitlyn', 'lora', 'matthew'];
+  document.getElementById("wordGuess").innerHTML = words[Math.floor(Math.random() * words.length)];
+
+  //Displays possible words blank spaces
+  var possibleWord = "J A S O N";
+  var blankSpaces = "";
+  var wordLength = possibleWord.length;
+
+  for (i = 0; i < wordLength; i++) {
+    var x = possibleWord.charAt(i);
+
+    if (x === " " || x === "/'") {
+      blankSpaces += x;
+    } else {
+      blankSpaces += "_";
+    }
+  }
+  document.getElementById("blankSpaces").innerHTML = blankSpaces;
+}
+
+//This code captures the keypress and prints it out on the screen
+var guessesLeft = 9;
+
+document.onkeypress = function(keyPressed) {
+  var keyPressed = keyPressed || window.event,
+    charCode = keyPressed.keyCode || keyPressed.which,
+    lettersGuessed = String.fromCharCode(charCode);
+
+  // var userGuess = prompt("What word do you guess?");
+  // var userGuess = words.split('');
+  // var userGuess
+  // if (words.indexOf(userGuess) > -1) {
+  // 	alert("Your guess is correct.")
+  // }else {
+  // 	alert("Your guess is wrong.")
+  // }
+
+  document.getElementById("lettersGuessed").innerHTML += lettersGuessed;
+  document.getElementById("guessesLeft").innerHTML = guessesLeft;
+
+  guessesLeft--;
+
+  if (guessesLeft === -1) {
+    alert("You Loose!");
+  }
+}
+    </script>
+
+</body></html>

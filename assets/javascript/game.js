@@ -1,51 +1,29 @@
-
-
-// 4. Display the following on the page:
-
-
-// wins varibale # guessing, # guesses ramianijng, array for guesses to choose from
-// have a start game function in begin - will hold all start and restarting. 
-
-// 6. Wins: (# of times user guessed the word correctly).
-
-//    * If the word is `madonna`, display it like this when the game starts: `_ _ _ _ _ _ _`.
-
-//    * As the user guesses the correct letters, reveal them: `m a d o _  _ a`.
-
-
-// All neec js.
-// 7. Number of Guesses Remaining: (# of guesses remaining for the user).
-
-// 8. Letters Already Guessed: (Letters the user has guessed, displayed like `L Z Y H`).
-
-// 9. After the user wins/loses the game should automatically choose another word and make the user play it.
-
+//Variables 
 var wins = 0;
-var remainingGuess= 8;
+var remainingGuess= 5;
 var lettersGuessed=[];
 var losses= 0
 // Setting array 
-var marvel= ["Captain America","Spider Man Homecoming","Guardians of the Galaxy","Avenegers Infinity War","Xmen First Class",];
-var images =["assets/images/redskull.jpg","assets/images/Vulture.jpg","assets/images/RonantheAccusor.jpg,","assets/images/Thanos.jpg","assets/images/sebass.jpg" ]
+var marvel= ["Captain America","Spider Man Homecoming","Guardians of the Galaxy","Avenegers Infinity War","Xmen First Class","Fantastic Four Rise of the Silver Surfer", "Black Panther","Ant Man and the Wasp",
+"Thor The Dark World",];
 var alpha = "abcdefghijklmnopqrstuvwxyz".split("");
 // Choose word randomly
 var randomWord = Math.floor(Math.random()* marvel.length);
 var choosenWord= marvel[randomWord];
 var correctGuessedLetters = [];
 var strToPrint = " "
-// var marvelImage=["assets/images/redskull.jpg","assets/images/Vulture.jpg","assets/images/RonantheAccusor.jpg","assets/images/Thanos.jpg","assets/images/sebass.jpg"];
-// // / test
 function  disply(){
 	document.querySelector("#guessesLeft").innerHTML=remainingGuess;
 	document.querySelector("#winsTotal").innerHTML=wins;
+	document.querySelector("#lossesTotal").innerHTML=losses
 	document.querySelector("#lettersGuessed").innerHTML=lettersGuessed;
- 	document.querySelector("#wordToGuess").innerHTML=correctGuessedLetters;
- 	document.querySelector("#photo").innerHTML=images[random];
+	document.querySelector("#wordToGuess").innerHTML=correctGuessedLetters;
+	document.querySelector("#lossesTotal").innerHTML=losses
 }
 
 
 function startGame(){
-		remainingGuess=8;
+		remainingGuess=5;
 		lettersGuessed=[];
 		randomWord = Math.floor(Math.random()* marvel.length);
 		choosenWord = marvel[randomWord];
@@ -81,6 +59,7 @@ document.onkeyup= function (event){
 	
 	if (remainingGuess<=1){
 		alert("You Lose!");
+		losses ++ 
 //    restart game (call start game function)	
 	     startGame();
 	}
@@ -90,7 +69,6 @@ document.onkeyup= function (event){
 	}
 
 	if (choosenWord.split("").some( x => x.toLowerCase()==event.key)){
-		//correctGuessedLetters.push(lettersGuessed)
 		correctGuessedLetters=correctGuessedLetters.map((e,i)=>{
 			if (choosenWord.split("")[i].toLowerCase()==userKey) {
 				return choosenWord.split("")[i]

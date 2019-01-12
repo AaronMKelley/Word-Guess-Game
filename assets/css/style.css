@@ -10,7 +10,7 @@ body{
 	background-color:#ED1D24;
 	font-size: 4.5rem;
 	font-family: Marvel;
-	border:5px solid white;
+	border:5px dashed white;
 	padding: 5px;
 }
 
@@ -22,6 +22,7 @@ body{
 	font-size: 20px;
 	color:white;
 }
+
 
 .wins{
 	width: 300px;
@@ -56,5 +57,5 @@ img{
 	width:1450px;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:240px;
+	margin-top:140px;
 }
